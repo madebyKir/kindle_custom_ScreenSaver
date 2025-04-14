@@ -4,7 +4,7 @@
   background-image: url('../images/paperwhite.png');
   background-size: contain;
   background-repeat: no-repeat;
-  width: 1518px;  /* Стандартный размер Paperwhite */
+  width: 1518px;  /* Размер изображений Kindle */
   height: 2232px;
   transform: scale(0.5);
   transform-origin: 0 0;
@@ -20,7 +20,7 @@
 }
 
 .cropFrame {
-  position: absolute;
+  position: absolute; /* левая верхняя точка окна предпросмотра */
   left: 130px;
   top: 160px;
 }
