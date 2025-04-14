@@ -15,21 +15,21 @@ $(function () {
 
         if (currentdevice == "kindle11") {
             // Переключаем на Paperwhite 5 (1236×1648)
-            $('#kindle').css("background-image", "url('images/kindle_pw5.png')");
+            $('#kindle').css("background-image", "url('images/kindle-pw5.png')");
             cropwidth = 1236;
             cropheight = 1648;
-            $('#device').text("Paperwhite 5");
-            currentdevice = "paperwhite5";
+            $('#device').text("kindle-pw5");
+            currentdevice = "kindle-pw5";
         } 
-        else if (currentdevice == "paperwhite5") {
+        else if (currentdevice == "kindle-pw5") {
             // Переключаем на Paperwhite 6 (1264×1680)
-            $('#kindle').css("background-image", "url('images/kindle_pw6.png')");
+            $('#kindle').css("background-image", "url('images/kindle-pw6.png')");
             cropwidth = 1264;
             cropheight = 1680;
-            $('#device').text("Paperwhite 6");
-            currentdevice = "paperwhite6";
+            $('#device').text("kindle-pw6");
+            currentdevice = "kindle-pw6";
         }
-        else if (currentdevice == "paperwhite6") {
+        else if (currentdevice == "kindle-pw6") {
             // Переключаем на Paperwhite (758×1024)
             $('#kindle').css("background-image", "url('images/paperwhite.png')");
             cropwidth = 758;
