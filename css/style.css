@@ -1,0 +1,74 @@
+#kindle {
+  position: relative;
+  margin: 20px auto 20px 100px;
+  background-image: url('../images/paperwhite.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1518px;  /* Стандартный размер Paperwhite */
+  height: 2232px;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+}
+
+#more {
+  position: absolute;
+  top: 162px;
+  left: -195px;
+  width: 140px;
+  transform: scale(1.5);
+  transform-origin: 0 0;
+}
+
+.cropFrame {
+  position: absolute;
+  left: 130px;
+  top: 160px;
+}
+
+.cropControls {
+  top: 0;
+  height: 52px;
+}
+
+.cropControls span, 
+.cropControls a {
+  margin: 12px 0 0 15px;
+  transform: scale(2);
+  transform-origin: 0 0;
+}
+
+.cropControls a {
+  margin: 7px 23px 0 0;
+}
+
+.image-file, 
+.results {
+  position: absolute;
+  display: none;
+}
+
+#imageLoader {
+  position: absolute;
+  top: 40px;
+  left: -200px;
+  color: transparent;
+  transform: scale(2);
+  transform-origin: 0 0;
+}
+
+.download {
+  position: absolute;
+  top: 85px;
+  left: -195px;
+  transform: scale(2);
+  transform-origin: 0 0;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:active {
+  color: gray;
+}
