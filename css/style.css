@@ -1,10 +1,10 @@
 #kindle {
   position: relative;
-  margin: 20px auto 20px 100px;
+  margin: 20px auto 20px 200px; /* <- было -100px, стало 250px */
   background-image: url('../images/paperwhite.png');
   background-size: contain;
   background-repeat: no-repeat;
-  width: 1518px;  /* Размер изображений Kindle */
+  width: 1518px;
   height: 2232px;
   transform: scale(0.5);
   transform-origin: 0 0;
@@ -50,19 +50,13 @@
 #imageLoader {
   position: absolute;
   top: 40px;
-  left: -200px;
+  left: -370px;
+  width: 170px;
   color: transparent;
   transform: scale(2);
   transform-origin: 0 0;
 }
 
-.download {
-  position: absolute;
-  top: 85px;
-  left: -195px;
-  transform: scale(2);
-  transform-origin: 0 0;
-}
 
 a {
   color: black;
@@ -71,4 +65,83 @@ a {
 
 a:active {
   color: gray;
+}
+
+.device-switcher {
+  position: absolute;
+  top: 230px; /* Позиция под кнопкой "Скачать" */
+  Left: -370px;
+  width: 170px;
+  transform: scale(2);
+  transform-origin: 0 0;
+}
+
+.full-clickable-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0066cc; /* Цвет как у ссылки */
+}
+
+.full-clickable-btn:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #e0e0e0;
+}
+
+.download {
+  position: absolute;
+  top: 100px;
+  left: -370px;
+  width: 170px;
+  transform: scale(2);
+  transform-origin: 0 0;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 40px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transform: scale(1.5);
+  transform-origin: top left;
+}
+
+.kindle-preview {
+  transform: scale(0.5);
+  transform-origin: top left;
 }
