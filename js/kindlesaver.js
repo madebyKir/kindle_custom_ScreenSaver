@@ -4,55 +4,55 @@ $(function () {
     var canvas = document.getElementById('imageCanvas');
     var ctx = canvas.getContext('2d');
     
-    // Начальные параметры (Kindle 11)
-    var cropwidth = 1072;
-    var cropheight = 1448;
-    var currentdevice = "kindle11";
+    // Начальные параметры (paperwhite)
+    var cropwidth = 758;
+    var cropheight = 1024;
+    var currentdevice = "paperwhite";
 
     $('#changeDevice').click(function(e) {
         e.preventDefault();
         $( ".cropFrame" ).remove(); // Очищаем предыдущую обрезку
 
-        if (currentdevice == "kindle11") {
-            // Переключаем на Paperwhite 5 (1236×1648)
-            $('#kindle').css("background-image", "url('images/kindle-pw5.png')");
-            cropwidth = 1236;
-            cropheight = 1648;
-            $('#device').text("kindle-pw5");
-            currentdevice = "kindle-pw5";
-        } 
-        else if (currentdevice == "kindle-pw5") {
-            // Переключаем на Paperwhite 6 (1264×1680)
-            $('#kindle').css("background-image", "url('images/kindle-pw6.png')");
-            cropwidth = 1264;
-            cropheight = 1680;
-            $('#device').text("kindle-pw6");
-            currentdevice = "kindle-pw6";
-        }
-        else if (currentdevice == "kindle-pw6") {
-            // Переключаем на Paperwhite (758×1024)
-            $('#kindle').css("background-image", "url('images/paperwhite.png')");
-            cropwidth = 758;
-            cropheight = 1024;
-            $('#device').text("Paperwhite");
-            currentdevice = "paperwhite";
-        }
-        else if (currentdevice == "paperwhite") {
-            // Переключаем на Touch (600×800)
-            $('#kindle').css("background-image", "url('images/touch.png')");
-            cropwidth = 600;
-            cropheight = 800;
-            $('#device').text("Touch");
-            currentdevice = "touch";
-        }
-        else {
-            // Возвращаемся к Kindle 11 (1072×1448)
-            $('#kindle').css("background-image", "url('images/kindle-11.png')");
-            cropwidth = 1072;
-            cropheight = 1448;
-            $('#device').text("Kindle 11");
-            currentdevice = "kindle11";
-        }
+if (currentdevice == "touch") {
+    // Переключаем на Paperwhite (758×1024)
+    $('#kindle').css("background-image", "url('images/paperwhite.png')");
+    cropwidth = 758;
+    cropheight = 1024;
+    $('#device').text("Kindle Paperwhite 5");
+    currentdevice = "paperwhite";
+}
+else if (currentdevice == "paperwhite") {
+    // Переключаем на Kindle PW5 (1236×1648)
+    $('#kindle').css("background-image", "url('images/kindle-pw5.png')");
+    cropwidth = 1236;
+    cropheight = 1648;
+    $('#device').text("Kindle Paperwhite 6");
+    currentdevice = "kindle-pw5";
+}
+else if (currentdevice == "kindle-pw5") {
+    // Переключаем на Kindle PW6 (1264×1680)
+    $('#kindle').css("background-image", "url('images/kindle-pw6.png')");
+    cropwidth = 1264;
+    cropheight = 1680;
+    $('#device').text("Kindle 11");
+    currentdevice = "kindle-pw6";
+}
+else if (currentdevice == "kindle-pw6") {
+    // Переключаем на Kindle 11 (1072×1448)
+    $('#kindle').css("background-image", "url('images/kindle-11.png')");
+    cropwidth = 1072;
+    cropheight = 1448;
+    $('#device').text("Kindle Touch");
+    currentdevice = "kindle11";
+}
+else {
+    // Возвращаемся к Touch (600×800) - начальное устройство
+    $('#kindle').css("background-image", "url('images/touch.png')");
+    cropwidth = 600;
+    cropheight = 800;
+    $('#device').text("Paperwhite");
+    currentdevice = "touch";
+}
     });
 
     // Остальные функции без изменений
@@ -77,6 +77,22 @@ $(function () {
                 w = $('.cropW', results),
                 h = $('.cropH', results),
                 download = results.next('.download').find('a');
+				
+				function initDownload() {
+    $('.download a').off('click').click(function(e) {
+        e.preventDefault();
+        const croppedImg = $('.cropimage').data('cropbox').getDataURL();
+        const link = document.createElement('a');
+        link.download = 'bg_ss00.png';
+        link.href = croppedImg;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+}
+
+// И вызовите эту функцию после cropImage()
+initDownload();
 
             image.cropbox({
                 width: cropwidth,
@@ -116,4 +132,38 @@ $(function () {
         };
         reader.readAsDataURL(e.target.files[0]);
     }
+});
+
+
+// Обработчик для кнопки скачивания
+$('.download a').click(function(e) {
+    e.preventDefault();
+    
+    // Получаем обрезанное изображение из cropbox
+    const croppedImg = $('.cropimage').data('cropbox').getDataURL();
+    
+    // Создаем временную ссылку для скачивания
+    const link = document.createElement('a');
+    link.download = 'bg_ss00.png';
+    link.href = croppedImg;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
+
+$('#downloadBtn').click(function (e) {
+  e.preventDefault();
+
+  const cropper = $('.cropimage').data('cropbox');
+  if (!cropper) {
+    alert('Сначала загрузите и обрежьте изображение');
+    return;
+  }
+
+  const croppedImg = cropper.getDataURL();
+
+  const link = document.createElement('a');
+  link.download = 'bg_ss00.png';
+  link.href = croppedImg;
+  link.click();
 });
